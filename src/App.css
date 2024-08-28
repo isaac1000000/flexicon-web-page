@@ -1,0 +1,52 @@
+:root {
+  --primary-background-color: #003C43;
+  --secondary-background-color: #135D66;
+  --primary-text-color: #000000;
+  --secondary-text-color: #77B0AA;
+  --primary-box-color: #d1d1d1;
+  --accent-color: #E3FEF7;
+  --default-font-size: 1rem;
+  --default-border-radius: 4px;
+  --default-border: 2px solid var(--primary-text-color);
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  opacity: 1;
+  color: blue;
+}
+
+body {
+  background-color: var(--primary-background-color);
+}
+#root {
+  width: 100vw;
+  height: 100vh;
+}
+#content {
+  padding: 2rem;
+  margin: 0 auto;
+  max-width: 1200px;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+#deck-settings {
+  width: 40%;
+  padding: 50px;
+}
+.deck-settings-section {
+  display: inline-block;
+}
+.deck-settings-section .number-input {
+  width: 150px;
+  padding: 5px 25px;
+}
+#deck-preview {
+  display: flex;
+  width: 50%;
+  flex-wrap: wrap;
+}
+#deck-preview .step-button {
+  width: 50%;
+}

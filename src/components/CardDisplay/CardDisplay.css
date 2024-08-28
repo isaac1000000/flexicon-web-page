@@ -1,0 +1,29 @@
+.card-display {
+	border: var(--default-border);
+	border-radius: var(--default-border-radius);
+	background-color: var(--accent-color);
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	flex-basis: 100%;
+}
+.card-display p {
+	height: 50%;
+	flex-basis: 100%;
+	margin: 0;
+	align-content: center;
+	text-align: center;
+}
+.card-display .word {
+	font-size: 4rem;
+}
+.card-display .definition {
+	font-size: 2rem;
+}
+.card-display .horizontal-line {
+	width: 80%;
+	height: 2px;
+	background-color: black;
+	align-self: center;
+}
