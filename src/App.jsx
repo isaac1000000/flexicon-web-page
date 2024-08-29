@@ -50,15 +50,30 @@ function App() {
       method: "POST",
     })
     const responseJson = await response.json();
-    return responseJson["id"];
+    return responseJson;
   }
 
-  async function downloadFlashcardSet() {
+  async function downloadFlashcardSet(deck) {
+    fetch(`http://localhost:5000/api/decks/download/${deck["id"]}`)
+      .then((response) => {
+        response.blob()
+          .then((blob) => {
+            const fileURL = window.URL.createObjectURL(blob);
+
+            let alink = document.createElement("a");
+            alink.href = fileURL;
+            alink.download = deck["filepath"];
+            alink.click();
+            console.log(`File ${deck["filepath"]} sent to client`);
+          })
+      })
+  }
+
+  async function onDownloadClick() {
     let id = 0;
     createFlashcardSet()
-      .then((deckId) => {
-        id = deckId;
-        console.log("Created deck: " + id);
+      .then((deck) => {
+        downloadFlashcardSet(deck);
       })
   }
 
@@ -86,7 +101,7 @@ function App() {
           <StepButton label="Previous" id="previousButton" step={-1} onClick={setIndex} />
           <StepButton label="Next" id="nextButton" step={1} onClick={setIndex} />
         </div>
-        <DownloadButton id="downloadButton" onClick={downloadFlashcardSet} />
+        <DownloadButton id="downloadButton" onClick={onDownloadClick} />
       </div>
     </>
   );
