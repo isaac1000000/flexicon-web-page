@@ -16,22 +16,29 @@ function App() {
   const [maxObscurity, setMaxObscurity] = useState(1.0);
   const [index, setIndex] = useState(0);
   const [quantity, setQuantity] = useState(10);
-  const [word, setWord] = useState("");
-  const [definition, setDefinition] = useState("");
-  const [currentCardSet, setCurrentCardSet] = useState({"len": 1, "rels": [{"target": "Choose a base word", "targetDefinition": "then click 'Generate'"}]});
+  const [word, setWord] = useState("Choose a base word");
+  const [definition, setDefinition] = useState("then click 'Generate'");
+  const [currentCardSet, setCurrentCardSet] = useState({"len": 0, "rels": []});
+  const [downloadReady, setDownloadReady] = useState(false);
+  const [pageLoad, setPageLoad] = useState(true);
 
   useEffect(() => {
     if (currentCardSet["len"] > 0) {
       setWord(currentCardSet["rels"][index]["target"]);
       setDefinition(currentCardSet["rels"][index]["targetDefinition"]);
+      setDownloadReady(true);
+    } else if (pageLoad) {
+
     } else {
       setWord("No Results Found...");
       setDefinition("Try again with a different word or different settings!");
+      setDownloadReady(false);
     }
   }, [index, currentCardSet])
 
   function generateFlashcardSet() {
     const params = {nst: minSetStrength, xst: maxSetStrength, nfr: minObscurity, xfr: maxObscurity, qty: quantity};
+    setPageLoad(false);
     setWord("Loading...");
     setDefinition("Loading...");
     setIndex(0);
@@ -101,7 +108,7 @@ function App() {
           <StepButton label="Previous" id="previousButton" step={-1} onClick={setIndex} />
           <StepButton label="Next" id="nextButton" step={1} onClick={setIndex} />
         </div>
-        <DownloadButton id="downloadButton" onClick={onDownloadClick} />
+        <DownloadButton id="downloadButton" onClick={onDownloadClick} locked={!downloadReady} />
       </div>
     </>
   );
