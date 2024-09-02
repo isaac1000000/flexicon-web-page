@@ -9,7 +9,7 @@ import DownloadButton from './components/DownloadButton/DownloadButton.jsx';
 import './App.css';
 
 function App() {
-  const [baseWord, setBaseWord] = useState("Word");
+  const [baseWord, setBaseWord] = useState("");
   const [minSetStrength, setMinSetStrength] = useState(0.0);
   const [maxSetStrength, setMaxSetStrength] = useState(1.0);
   const [minObscurity, setMinObscurity] = useState(0.0);
