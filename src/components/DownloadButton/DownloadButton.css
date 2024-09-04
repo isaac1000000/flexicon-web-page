@@ -1,0 +1,15 @@
+.download-button button {
+	background-color: var(--accent-color);
+	border: var(--default-border);
+	border-radius: var(--default-border-radius);
+	padding: 8px 10px;
+	margin: 4px 4px;
+	font-size: 2rem;
+}
+
+.download-button button:hover :not(disabled) {
+	background-color: var(--secondary-text-color);
+	padding: 12px 14px;
+	margin: 0;
+	transition: .05s padding ease-out, .05s margin ease-out, background-color .25s;
+}
